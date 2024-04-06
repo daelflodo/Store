@@ -1,0 +1,67 @@
+
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <div class="container-fluid">
+ 
+    <a class="navbar-brand" routerLink=""><img class="fav" src="../assets/favicon.ico" alt="Ed">SysFern -Store</a>
+    
+   
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <!-- Contenedor del menú -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      
+      <ul class="navbar-nav ms-auto"> <!-- 'ms-auto' para alinear a la derecha -->        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="cart">Cart</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Products
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" routerLink="products">View Products</a></li>
+            <li *ngIf="getAvatarFromLocalStorage()"><a class="dropdown-item" routerLink="product-add">New Product</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Providers
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" routerLink="providers">View Providers</a></li>
+            <li *ngIf="getAvatarFromLocalStorage()"><a class="dropdown-item" routerLink="provider-add">New Provider</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="contact">Contact</a>
+        </li>
+        <!-- Modificación -->
+          <li *ngIf="!getAvatarFromLocalStorage()" class="nav-item">
+          <a class="nav-link" routerLink="login">LogIn</a>
+          </li>
+          
+          <li *ngIf="getAvatarFromLocalStorage() && getFullNameFromLocalStorage() " class=" dropdown">
+          <a id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+          <span style="color: aqua;"> {{ getFullNameFromLocalStorage() }}</span>   
+          <!-- <img [src]="getAvatarFromLocalStorage()" alt="Image" class="avatar ">            -->
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" (click)="logOut()">LogOut</a></li>            
+          </ul>
+        </li>
+        <!-- Fin Modificación -->
+      </ul>
+      <img  *ngIf="getAvatarFromLocalStorage() " [src]="getAvatarFromLocalStorage()" alt="Image" class="avatar ">           
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+

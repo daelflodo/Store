@@ -1,0 +1,11 @@
+.btn{
+    margin-right: 1%;
+}
+
+.alert{
+    width: 15%;
+}
+.divAlert{
+ display: flex;
+ justify-content: center;
+}

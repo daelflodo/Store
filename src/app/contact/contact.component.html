@@ -1,0 +1,47 @@
+<div class="container">
+  <form [formGroup]="formContact" (ngSubmit)="enviar()">
+    <h1>Contact</h1>
+    <hr>
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        [ngClass]="{
+          'is-invalid':
+            hasErrors('name', 'required') || hasErrors('name', 'minlength')
+        }"
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+      />
+      <div class="text-danger" *ngIf="hasErrors('name', 'required')">
+        Name is required
+      </div>
+      <div class="text-danger" *ngIf="hasErrors('name', 'minlength')">
+        must be at least 3 characters
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        [ngClass]="{
+          'is-invalid':
+            hasErrors('email', 'required') || hasErrors('email', 'email')
+        }"
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+      />
+      <div class="text-danger" *ngIf="hasErrors('email', 'email')">
+        invalid email
+      </div>
+      <div class="text-danger" *ngIf="hasErrors('email', 'required')">
+        Email is required
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+
